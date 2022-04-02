@@ -28,6 +28,16 @@ func getUserById(c *gin.Context) {
     c.JSON(http.StatusOK, userList[index + 1])
 }
 
+func register(c *gin.Context) {
+    username := c.Query("username")
+    email := c.Query("email")
+    password := c.Query("password")
+    age := c.Query("age")
+    c.JSON(http.StatusOK, gin.H{
+
+    })
+}
+
 func main() {
     router := gin.Default()
 
