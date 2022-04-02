@@ -3,6 +3,7 @@ package main
 import (
     "net/http"
     "github.com/gin-gonic/gin"
+    "strconv"
     //"errors"
 )
 
@@ -23,13 +24,15 @@ func getUsers(c *gin.Context) {
 }
 
 func getUserById(c *gin.Context) {
-    c.JSON(http.StatusOK, userList)
+    index, _ := strconv.Atoi(c.Param("id"))
+    c.JSON(http.StatusOK, userList[index + 1])
 }
 
 func main() {
     router := gin.Default()
 
     router.GET("/users", getUsers)
+    router.GET("/users/:id", getUserById)
 
     router.Run("localhost:5000")
 }
